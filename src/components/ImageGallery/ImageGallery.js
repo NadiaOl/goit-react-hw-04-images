@@ -23,6 +23,7 @@ export const ImageGallery = ({searchText}) =>  {
                 .catch((error) => console.log(error))
                 .finally(() =>
                     setIsLoading(false))}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     
     useEffect(() => {
@@ -51,6 +52,7 @@ export const ImageGallery = ({searchText}) =>  {
                 .catch((error) => console.log(error))
                 .finally(() =>
                     setIsLoading(false))}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page])
     
     const hendlerButtonClick = (e) => {

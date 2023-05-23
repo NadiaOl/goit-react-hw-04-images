@@ -9,12 +9,14 @@ const modalRoot = document.querySelector('#modal-root')
 export const Modal = ({closeModal, largePicture})=> {
     useEffect(() => {
     window.addEventListener('keydown', handleEscClose)
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
     
 useEffect(() => {
     return () => {
     window.removeEventListener('keydown', handleEscClose)
 };
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
     
     const handleEscClose = (event) => {
