@@ -6,7 +6,8 @@ import css from '../components/Searchbar/Searchbar.module.css'
 
 
 export const App = ()=> {
-  const [searchText, setSearchText]=useState('')
+  const [searchText, setSearchText] = useState('')
+    const [page, setPage] = useState(1)
 
   const handleSearch = (searchText) => {
     setSearchText(searchText)
@@ -14,9 +15,9 @@ export const App = ()=> {
 
     return (
       <div className={css.App}>
-        <Searchbar handleSearch={handleSearch}/>
+        <Searchbar handleSearch={handleSearch} setPage={setPage} />
         <ToastContainer/>
-        <ImageGallery searchText={searchText}/>
+        <ImageGallery searchText={searchText} setPage={setPage} page={page} />
       </div> 
     );
   }

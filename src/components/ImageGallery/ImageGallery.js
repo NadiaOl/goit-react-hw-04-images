@@ -6,54 +6,34 @@ import {Button} from '../Button/Button';
 import css from './ImageGallery.module.css';
 import { Modal } from "components/Modal/Modal";
 
-export const ImageGallery = ({searchText}) =>  {
+export const ImageGallery = ({searchText, setPage, page}) =>  {
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-    const [page, setPage] = useState(1)
     const [isShowModal, setIsShowModal] = useState(false)
     const [largePicture, setLargePicture] = useState('')
 
     useEffect(() => {
-        if (searchText) {
-            setIsLoading(true)
-            getPicture(searchText, 1)
-                .then(response => response.json())
-                .then((data) =>
-                    setData(data.hits))
-                .catch((error) => console.log(error))
-                .finally(() =>
-                    setIsLoading(false))}
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
-    
-    useEffect(() => {
-        if (searchText) {
+        if (searchText && page <=1 ) {
             setData(null)
             setIsLoading(true)
-            getPicture(searchText, 1)
+            getPicture(searchText, page)
                 .then(response => response.json())
                 .then((data) =>
                     setData(data.hits))
                 .catch((error) => console.log(error))
                 .finally(() =>
-                    setIsLoading(false),
-                    setPage(1))
+                    setIsLoading(false),)
         }
-    }, [searchText])
-
-    useEffect(() => {
-        const prevData = data
         if (page > 1) {
             setIsLoading(true)
             getPicture(searchText, page)
                 .then(response => response.json())
                 .then((data) =>
-                    setData([...prevData, ...data.hits]))
+                    setData(prevData =>[...prevData, ...data.hits]))
                 .catch((error) => console.log(error))
                 .finally(() =>
                     setIsLoading(false))}
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page])
+    }, [page, searchText, setPage])
     
     const hendlerButtonClick = (e) => {
         setPage(page + 1)

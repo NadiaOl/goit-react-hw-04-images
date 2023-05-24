@@ -19,7 +19,6 @@ export const Modal = ({ closeModal, largePicture }) => {
         }
     }, [closeModal]);
     
-    
     const handleBackdropClose = (event) => {
         if(event.target === event.currentTarget)
         closeModal()
@@ -33,7 +32,6 @@ export const Modal = ({ closeModal, largePicture }) => {
         </div>, modalRoot
     )
 }
-    
 
 Modal.propTypes = {
     largePicture: PropTypes.string.isRequired,

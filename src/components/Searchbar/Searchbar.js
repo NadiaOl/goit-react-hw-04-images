@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import css from './Searchbar.module.css';
 import PropTypes from "prop-types";
 
-export const Searchbar = ({handleSearch}) => {
+export const Searchbar = ({handleSearch, setPage}) => {
     const[value, setValue] = useState('')
 
 const handleChange = ({target:{value}}) => {
@@ -17,8 +17,8 @@ const handleSubmit = (e) => {
         toast.warn("Enter a search term, please!");
         return
     }
-
     handleSearch(value)
+    setPage(1)
 }
 
 
