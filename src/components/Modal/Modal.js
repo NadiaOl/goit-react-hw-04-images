@@ -6,38 +6,33 @@ import PropTypes from "prop-types";
 
 const modalRoot = document.querySelector('#modal-root') 
 
-export const Modal = ({closeModal, largePicture})=> {
+export const Modal = ({ closeModal, largePicture }) => {
+
     useEffect(() => {
-    window.addEventListener('keydown', handleEscClose)
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
-    
-useEffect(() => {
-    return () => {
-    window.removeEventListener('keydown', handleEscClose)
-};
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
-    
-    const handleEscClose = (event) => {
+        const handleEscClose = (event) => {
         if(event.code === 'Escape')
         closeModal()
     }
+        window.addEventListener('keydown', handleEscClose)
+        return () => {
+            window.removeEventListener('keydown', handleEscClose)
+        }
+    }, [closeModal]);
+    
     
     const handleBackdropClose = (event) => {
         if(event.target === event.currentTarget)
         closeModal()
     }
     
-            return createPortal(
-                <div className={css.Overlay} onClick={handleBackdropClose}>
-                <div className={css.Modal}>
-                    <img src={largePicture} alt="some" />
-                </div>
-            </div>, modalRoot
-            )
-
-    }
+    return createPortal(
+        <div className={css.Overlay} onClick={handleBackdropClose}>
+        <div className={css.Modal}>
+            <img src={largePicture} alt="some" />
+        </div>
+        </div>, modalRoot
+    )
+}
     
 
 Modal.propTypes = {
