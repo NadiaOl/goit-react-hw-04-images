@@ -13,7 +13,7 @@ export const ImageGallery = ({searchText, setPage, page}) =>  {
     const [largePicture, setLargePicture] = useState('')
 
     useEffect(() => {
-        if (searchText && page <=1 ) {
+        if (searchText && page === 1 ) {
             setData(null)
             setIsLoading(true)
             getPicture(searchText, page)
